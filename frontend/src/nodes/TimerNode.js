@@ -5,9 +5,12 @@ export const TimerNode = ({ id }) => (
     <BaseNode
         id={id}
         label="Timer (Delay)"
-        handles={[{ type: 'source', position: Position.Right, id: 'out' }]}
+        handles={[
+            { type: 'target', position: Position.Left, id: 'in' },
+            { type: 'source', position: Position.Right, id: 'out' }
+        ]}
     >
-        <label className="node-input-label">Duration (ms)</label>
+        <label className="node-input-label">Wait (ms)</label>
         <input type="number" className="node-input" defaultValue={1000} />
     </BaseNode>
 );
