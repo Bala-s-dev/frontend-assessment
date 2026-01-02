@@ -1,20 +1,36 @@
 /* frontend/src/nodes/nodes.css */
-.pro-node-container {
-  background: var(--bg-card);
-  border: 1px solid var(--border-main);
+:root {
+  --bg-node: #161b22;
+  --bg-header: #1c2128;
+  --border-node: #30363d;
+  --text-main: #e6edf3;
+  --text-dim: #8b949e;
+  --accent-glow: rgba(88, 166, 255, 0.4);
+  --accent-primary: #58a6ff;
+}
+
+.node-container {
+  background: var(--bg-node);
+  border: 1px solid var(--border-node);
   border-radius: 10px;
   min-width: 220px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible; /* Allows handles to sit on the edge */
 }
 
-.pro-node-container.selected {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 1px var(--accent-blue), 0 0 20px rgba(88, 166, 255, 0.2);
+/* Production-grade Focus State */
+.node-container:hover, .node-container.selected {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 0.5px var(--accent-primary), 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
 }
 
-.pro-node-header {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border-main);
+.node-header {
+  padding: 10px 14px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-node);
+  border-radius: 10px 10px 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,60 +38,78 @@
 
 .node-label {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--text-dim);
   text-transform: uppercase;
-  color: var(--text-secondary);
   letter-spacing: 0.05em;
 }
 
-.pro-handle {
-  width: 10px !important;
-  height: 10px !important;
-  background: #0B0E14 !important;
-  border: 2px solid var(--border-main) !important;
+.node-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Stylized Inputs */
+.node-input, .node-select {
+  background: #0d1117;
+  border: 1px solid var(--border-node);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-main);
+  font-size: 13px;
   transition: border-color 0.2s;
 }
 
+.node-input:focus {
+  border-color: var(--accent-primary);
+  outline: none;
+}
+
+/* Sleek Connection Handles */
+.pro-handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: #0d1117 !important;
+  border: 2px solid var(--border-node) !important;
+  transition: all 0.2s;
+}
+
 .pro-handle:hover {
-  border-color: var(--accent-blue) !important;
+  border-color: var(--accent-primary) !important;
+  transform: scale(1.3);
 }
+
+.node-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.node-type-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+
+.node-accent-bar {
+  height: 3px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  opacity: 0.8;
+}
+
+.studio-info-text {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.4;
+  padding: 4px 0;
+}
+
 .pro-field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.pro-label {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-}
-
-.pro-input, .pro-select, .pro-textarea {
-    background: #1C2128;
-    border: 1px solid var(--border-main);
-    border-radius: 6px;
-    padding: 8px;
-    color: var(--text-primary);
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.pro-input:focus, .pro-select:focus {
-    border-color: var(--accent-blue);
-}
-
-.pro-file-dropzone {
-    border: 1px dashed var(--border-main);
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.pro-file-dropzone:hover {
-    background: rgba(88, 166, 255, 0.05);
-    border-color: var(--accent-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }

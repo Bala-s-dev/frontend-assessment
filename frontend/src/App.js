@@ -7,7 +7,7 @@ function App() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: 'var(--bg-studio)' }}>
       <header style={{
-        height: '56px', padding: '0 24px', display: 'flex', alignItems: 'center',
+        height: '56px', padding: '0 24px', display: 'flex', alignItems: 'center', 
         justifyContent: 'space-between', borderBottom: '1px solid var(--border-main)',
         background: 'rgba(11, 14, 20, 0.8)', backdropFilter: 'blur(12px)', zIndex: 100
       }}>

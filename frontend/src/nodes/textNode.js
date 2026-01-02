@@ -43,7 +43,7 @@ export const TextNode = ({ id, data }) => {
           className="nodrag"
           style={{
             background: 'transparent', border: 'none', color: 'var(--text-primary)',
-            fontSize: '13px', fontFamily: 'monospace', resize: 'none', outline: 'none',
+            fontSize: '13px', fontFamily: '"JetBrains Mono", monospace', resize: 'none', outline: 'none',
             minWidth: '200px'
           }}
         />
