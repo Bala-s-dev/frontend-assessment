@@ -1,4 +1,3 @@
-// src/nodes/textNode.js 
 import { useState, useEffect, useRef } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -8,6 +7,7 @@ export const TextNode = ({ id, data }) => {
   const [variables, setVariables] = useState([]);
   const textAreaRef = useRef(null);
 
+  // Logic: Extract variable names inside {{ }}
   useEffect(() => {
     const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g;
     const matches = [...currText.matchAll(regex)];
@@ -15,11 +15,22 @@ export const TextNode = ({ id, data }) => {
     setVariables(uniqueVars);
   }, [currText]);
 
-  const handleTextChange = (e) => setCurrText(e.target.value);
+  // Logic: Auto-resize the text area
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
+    }
+  }, [currText]);
 
   const dynamicHandles = [
     { type: 'source', position: Position.Right, id: 'output' },
-    ...variables.map(v => ({ type: 'target', position: Position.Left, id: v }))
+    ...variables.map((v, i) => ({
+      type: 'target',
+      position: Position.Left,
+      id: v,
+      style: { top: `${(i + 1) * (100 / (variables.length + 1))}%` } // Distribute handles evenly
+    }))
   ];
 
   return (
@@ -27,9 +38,10 @@ export const TextNode = ({ id, data }) => {
       <textarea
         ref={textAreaRef}
         value={currText}
-        onChange={handleTextChange}
-        className="nodrag" // Prevents dragging when typing
-        style={{ width: '100%', minHeight: '40px' }}
+        onChange={(e) => setCurrText(e.target.value)}
+        className="nodrag node-input"
+        rows={1}
+        style={{ resize: 'none', overflow: 'hidden' }}
       />
     </BaseNode>
   );

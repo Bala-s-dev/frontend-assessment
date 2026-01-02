@@ -1,24 +1,27 @@
-// src/nodes/BaseNode.js
 import { Handle, Position } from 'reactflow';
-import './nodes.css'; // Standardized styles
+import './node.css';
 
 export const BaseNode = ({ id, label, children, handles = [] }) => {
     return (
-        <div className="node-container">
+        <div className="node-wrapper">
             <div className="node-header">
-                <span className="node-title">{label}</span>
+                <span className="node-label">{label}</span>
             </div>
-            <div className="node-content">
+            <div className="node-body">
                 {children}
             </div>
-            {handles.map((h, idx) => (
+            {handles.map((handle, index) => (
                 <Handle
-                    key={`${id}-${h.id || idx}`}
-                    type={h.type}
-                    position={h.position}
-                    id={`${id}-${h.id}`}
-                    style={{ ...h.style }}
-                    className="node-handle"
+                    key={`${id}-handle-${index}`}
+                    type={handle.type} 
+                    position={handle.position}
+                    id={`${id}-${handle.id}`}
+                    style={{
+                        background: '#555',
+                        width: '8px',
+                        height: '8px',
+                        ...handle.style
+                    }}
                 />
             ))}
         </div>
