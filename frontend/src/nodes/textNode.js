@@ -8,6 +8,7 @@ export const TextNode = ({ id, data }) => {
   const [variables, setVariables] = useState([]);
   const textAreaRef = useRef(null);
 
+  // Requirement: Detect variables for dynamic handles
   useEffect(() => {
     const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g;
     const matches = [...currText.matchAll(regex)];
@@ -15,6 +16,7 @@ export const TextNode = ({ id, data }) => {
     setVariables(uniqueVars);
   }, [currText]);
 
+  // Requirement: Auto-resize height based on input content
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = 'auto';
@@ -33,9 +35,9 @@ export const TextNode = ({ id, data }) => {
   ];
 
   return (
-    <BaseNode id={id} label="Text" handles={handles}>
+    <BaseNode id={id} label="Text Processor" handles={handles}>
       <div className="node-field">
-        <label>Text:</label>
+        <label>Content</label>
         <textarea
           ref={textAreaRef}
           value={currText}

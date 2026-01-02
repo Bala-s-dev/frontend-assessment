@@ -5,34 +5,40 @@ import { SubmitButton } from './submit';
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      {/* Header Area */}
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      {/* Top Navigation Bar */}
       <header style={{
-        padding: '12px 24px',
-        borderBottom: '1px solid #e2e8f0',
-        background: '#fff',
+        height: '60px',
+        padding: '0 24px',
         display: 'flex',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        background: 'var(--bg-surface)',
+        borderBottom: '1px solid var(--border-light)',
+        zIndex: 10
       }}>
-        <h1 style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: '#6366f1' }}>
-          VectorShift <span style={{ color: '#94a3b8', fontWeight: 400 }}>| Workflow Builder</span>
-        </h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: '8px' }} />
+          <h1 style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--text-main)' }}>
+            VectorShift <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>Workflow</span>
+          </h1>
+        </div>
         <SubmitButton />
       </header>
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        {/* Sidebar Toolbar */}
+      <div style={{ display: 'flex', flex: 1 }}>
+        {/* Component Sidebar */}
         <aside style={{
-          width: '260px',
-          borderRight: '1px solid #e2e8f0',
-          background: '#fff',
-          zIndex: 10
+          width: '280px',
+          background: 'var(--bg-surface)',
+          borderRight: '1px solid var(--border-light)',
+          padding: '24px',
+          overflowY: 'auto'
         }}>
           <PipelineToolbar />
         </aside>
 
-        {/* Canvas Area */}
+        {/* Main Canvas */}
         <main style={{ flex: 1, position: 'relative' }}>
           <PipelineUI />
         </main>

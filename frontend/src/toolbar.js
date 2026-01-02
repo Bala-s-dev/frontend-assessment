@@ -2,44 +2,25 @@
 import { DraggableNode } from './draggableNode';
 
 export const PipelineToolbar = () => {
-    const nodeGroups = [
-        {
-            label: 'Basic Nodes', nodes: [
-                { type: 'customInput', label: 'Input' },
-                { type: 'customOutput', label: 'Output' },
-                { type: 'text', label: 'Text' }
-            ]
-        },
-        {
-            label: 'AI & Logic', nodes: [
-                { type: 'llm', label: 'LLM Node' },
-                { type: 'logic', label: 'Condition' }
-            ]
-        },
-        {
-            label: 'Utilities', nodes: [
-                { type: 'timer', label: 'Wait/Timer' },
-                { type: 'file', label: 'File Upload' },
-                { type: 'note', label: 'Sticky Note' }
-            ]
-        }
-    ];
+  const categories = [
+    { name: 'Core', items: [['customInput', 'Input'], ['customOutput', 'Output'], ['text', 'Text Editor']] },
+    { name: 'Intelligence', items: [['llm', 'LLM Engine']] },
+    { name: 'Utilities', items: [['logic', 'Logic Branch'], ['timer', 'Timer'], ['note', 'Note'], ['file', 'File Upload'], ['color', 'Color Picker']] }
+  ];
 
-    return (
-        <div style={{ padding: '20px' }}>
-            <h2 style={{ fontSize: '14px', marginBottom: '20px', color: '#64748b' }}>Components</h2>
-            {nodeGroups.map((group, idx) => (
-                <div key={idx} style={{ marginBottom: '24px' }}>
-                    <h3 style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94a3b8', marginBottom: '12px' }}>
-                        {group.label}
-                    </h3>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '8px' }}>
-                        {group.nodes.map(node => (
-                            <DraggableNode key={node.type} type={node.type} label={node.label} />
-                        ))}
-                    </div>
-                </div>
+  return (
+    <div>
+      <h2 style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '20px' }}>COMPONENTS</h2>
+      {categories.map(cat => (
+        <div key={cat.name} style={{ marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '12px' }}>{cat.name}</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {cat.items.map(([type, label]) => (
+              <DraggableNode key={type} type={type} label={label} />
             ))}
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 };

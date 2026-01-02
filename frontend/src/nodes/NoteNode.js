@@ -1,13 +1,12 @@
+// frontend/src/nodes/NoteNode.js
 import { BaseNode } from './BaseNode';
 
-export const NoteNode = ({ id, data }) => (
-    <BaseNode id={id} label="Note" handles={[]}>
-        <label className="node-input-label">Content</label>
+export const NoteNode = ({ id }) => (
+    <BaseNode id={id} label="Sticky Note" handles={[]}>
         <textarea
-            placeholder="Capture thoughts..."
-            className="nodrag node-input"
-            defaultValue={data?.text}
-            style={{ minHeight: '60px', resize: 'vertical' }}
+            placeholder="Capture context here..."
+            className="node-input nodrag"
+            style={{ minHeight: '80px', background: '#fefce8', border: '1px solid #fef08a' }}
         />
     </BaseNode>
 );
