@@ -6,52 +6,50 @@ from collections import deque
 
 app = FastAPI()
 
-# Senior Touch: Enable CORS so frontend can communicate with backend
+# Enable CORS for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, you'd restrict this
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-def is_dag(nodes: List, edges: List) -> bool:
-    """
-    Checks if the graph is a Directed Acyclic Graph using Kahn's Algorithm.
-    """
-    adj = {n['id']: [] for n in nodes}
-    in_degree = {n['id']: 0 for n in nodes}
+def is_dag(nodes: List[Dict], edges: List[Dict]) -> bool:
+    """Check if the graph is a Directed Acyclic Graph using Kahn's Algorithm."""
+    adj = {node['id']: [] for node in nodes}
+    in_degree = {node['id']: 0 for node in nodes}
     
-    for e in edges:
-        source = e['source']
-        target = e['target']
-        if source in adj:
+    for edge in edges:
+        source, target = edge['source'], edge['target']
+        if source in adj and target in adj:
             adj[source].append(target)
-        if target in in_degree:
             in_degree[target] += 1
-        
-    queue = deque([n for n in in_degree if in_degree[n] == 0])
-    count = 0
-    
+
+    queue = deque([u for u in in_degree if in_degree[u] == 0])
+    visited_count = 0
+
     while queue:
         u = queue.popleft()
-        count += 1
-        if u in adj:
-            for v in adj[u]:
-                if v in in_degree:
-                    in_degree[v] -= 1
-                    if in_degree[v] == 0:
-                        queue.append(v)
-                
-    return count == len(nodes)
+        visited_count += 1
+        for v in adj[u]:
+            in_degree[v] -= 1
+            if in_degree[v] == 0:
+                queue.append(v)
+
+    return visited_count == len(nodes)
 
 @app.post('/pipelines/parse')
 async def parse_pipeline(pipeline: Dict = Body(...)):
     nodes = pipeline.get('nodes', [])
     edges = pipeline.get('edges', [])
     
+    # Calculate required metrics
+    num_nodes = len(nodes)
+    num_edges = len(edges)
+    check_dag = is_dag(nodes, edges)
+    
     return {
-        'num_nodes': len(nodes),
-        'num_edges': len(edges),
-        'is_dag': is_dag(nodes, edges)
+        "num_nodes": num_nodes,
+        "num_edges": num_edges,
+        "is_dag": check_dag
     }

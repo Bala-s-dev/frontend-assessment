@@ -1,78 +1,81 @@
 /* frontend/src/nodes/nodes.css */
-.node-container {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  min-width: var(--node-width);
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+.pro-node-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-main);
+  border-radius: 10px;
+  min-width: 220px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.node-container:hover {
-  border-color: var(--primary-light);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  transform: translateY(-2px);
+.pro-node-container.selected {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px var(--accent-blue), 0 0 20px rgba(88, 166, 255, 0.2);
 }
 
-.node-header {
-  background: #f1f5f9;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border-light);
+.pro-node-header {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-main);
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
 }
 
 .node-label {
   font-size: 11px;
-  font-weight: 700;
-  color: var(--primary-dark);
+  font-weight: 600;
   text-transform: uppercase;
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
 }
 
-.node-content {
-  padding: 14px;
-}
-
-.node-field {
-  margin-bottom: 12px;
-}
-
-.node-field label {
-  display: block;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-
-.node-input, .node-select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  font-size: 12px;
+.pro-handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: #0B0E14 !important;
+  border: 2px solid var(--border-main) !important;
   transition: border-color 0.2s;
 }
 
-.node-input:focus {
-  outline: none;
-  border-color: var(--primary);
+.pro-handle:hover {
+  border-color: var(--accent-blue) !important;
+}
+.pro-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-/* Professional Port Styling */
-.react-flow__handle {
-  width: 10px !important;
-  height: 10px !important;
-  background: var(--bg-surface) !important;
-  border: 2px solid var(--primary) !important;
-  transition: background 0.2s, transform 0.2s;
+.pro-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
 }
 
-.react-flow__handle:hover {
-  background: var(--primary) !important;
-  transform: scale(1.3);
+.pro-input, .pro-select, .pro-textarea {
+    background: #1C2128;
+    border: 1px solid var(--border-main);
+    border-radius: 6px;
+    padding: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.pro-input:focus, .pro-select:focus {
+    border-color: var(--accent-blue);
+}
+
+.pro-file-dropzone {
+    border: 1px dashed var(--border-main);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pro-file-dropzone:hover {
+    background: rgba(88, 166, 255, 0.05);
+    border-color: var(--accent-blue);
 }

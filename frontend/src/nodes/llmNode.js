@@ -10,8 +10,10 @@ export const LLMNode = ({ id }) => {
   ];
 
   return (
-    <BaseNode id={id} label="LLM" handles={handles}>
-      <div className="node-text">Standard Language Model node for processing prompts.</div>
+    <BaseNode id={id} label="LLM Engine" typeColor="#8b5cf6" handles={handles}>
+      <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', padding: '10px 0' }}>
+        This is a standard Large Language Model node.
+      </div>
     </BaseNode>
   );
 };

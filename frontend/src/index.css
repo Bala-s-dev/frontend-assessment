@@ -1,32 +1,16 @@
 /* frontend/src/index.css */
 :root {
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --primary-dark: #4f46e5;
-  --bg-workspace: #f8fafc;
-  --bg-surface: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-light: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --node-width: 200px;
+  --bg-studio: #0B0E14;
+  --bg-card: #161B22;
+  --border-main: #30363D;
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --accent-blue: #58A6FF;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
-  background-color: var(--bg-workspace);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Scrollbar styling for a cleaner look */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-light);
-  border-radius: 10px;
+  background-color: var(--bg-studio);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
 }

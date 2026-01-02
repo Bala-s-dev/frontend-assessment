@@ -10,17 +10,18 @@ export const LogicNode = ({ id }) => {
         <BaseNode
             id={id}
             label="Logic Branch"
+            icon="󱓟"
             handles={[
                 { type: 'target', position: Position.Left, id: 'in' },
-                { type: 'source', position: Position.Right, id: 'true', style: { top: '30%', borderColor: '#22c55e' } },
-                { type: 'source', position: Position.Right, id: 'false', style: { top: '70%', borderColor: '#ef4444' } }
+                { type: 'source', position: Position.Right, id: 'true', style: { top: '30%', borderColor: '#3FB950' } },
+                { type: 'source', position: Position.Right, id: 'false', style: { top: '70%', borderColor: '#F85149' } }
             ]}
         >
-            <div className="node-field">
-                <label>Condition Type</label>
-                <select className="node-select" value={condition} onChange={(e) => setCondition(e.target.value)}>
-                    <option value="equals">Equals</option>
-                    <option value="contains">Contains</option>
+            <div className="pro-field-group">
+                <label className="pro-label">Operator</label>
+                <select className="pro-select" value={condition} onChange={(e) => setCondition(e.target.value)}>
+                    <option value="equals">Is Equal To</option>
+                    <option value="contains">Contains String</option>
                     <option value="greater">Greater Than</option>
                 </select>
             </div>
