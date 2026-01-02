@@ -1,17 +1,16 @@
-// Example: LogicNode.js
-import { BaseNode } from './BaseNode';
 import { Position } from 'reactflow';
+import { BaseNode } from './BaseNode';
 
-export const LogicNode = ({ id, data }) => (
+export const LogicNode = ({ id }) => (
     <BaseNode
         id={id}
-        label="Condition"
+        label="Logic (If/Else)"
         handles={[
             { type: 'target', position: Position.Left, id: 'in' },
             { type: 'source', position: Position.Right, id: 'true', style: { top: '30%' } },
             { type: 'source', position: Position.Right, id: 'false', style: { top: '70%' } }
         ]}
     >
-        <div className="p-2 text-xs">If/Else Logic</div>
+        <div className="p-2 text-xs">Branching Logic</div>
     </BaseNode>
 );

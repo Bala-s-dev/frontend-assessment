@@ -10,6 +10,11 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import { LogicNode } from './nodes/LogicNode';
+import { ColorNode } from './nodes/ColorNode';
+import { NoteNode } from './nodes/NoteNode';
+import { TimerNode } from './nodes/TimerNode';
+import { FileNode } from './nodes/FileNode';
 
 import 'reactflow/dist/style.css';
 
@@ -20,6 +25,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  logic: LogicNode,
+  color: ColorNode,
+  note: NoteNode,
+  timer: TimerNode,
+  file: FileNode,
 };
 
 const selector = (state) => ({
