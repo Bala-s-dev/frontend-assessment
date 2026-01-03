@@ -9,13 +9,13 @@ export const DraggableNode = ({ type, label, icon }) => {
 
   return (
     <div
-      className={`draggable-card ${type}`}
+      className={`draggable-studio-tile ${type}`}
       onDragStart={(event) => onDragStart(event, type)}
       onDragEnd={(event) => (event.target.style.cursor = 'grab')}
       draggable
     >
-      <div className="card-icon-container">{icon}</div>
-      <span className="card-label">{label}</span>
+      <div className="tile-icon">{icon}</div>
+      <span className="tile-label">{label}</span>
     </div>
   );
 };

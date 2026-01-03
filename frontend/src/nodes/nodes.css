@@ -1,15 +1,26 @@
-/* frontend/src/nodes/nodes.css */
+/* =========================================================
+   Root Theme Variables (Carbon & Cobalt)
+   ========================================================= */
 :root {
   --bg-node: rgba(17, 24, 39, 0.95);
   --bg-header: rgba(31, 41, 55, 0.8);
   --bg-input: #030712;
+
   --border-main: #374151;
+  --border-node: #374151;
+
   --text-primary: #f9fafb;
+  --text-main: #e5e7eb;
   --text-secondary: #9ca3af;
+  --text-dim: #6b7280;
+
   --accent-primary: #6366f1;
   --accent-glow: rgba(99, 102, 241, 0.2);
 }
 
+/* =========================================================
+   Node Container
+   ========================================================= */
 .node-container {
   background: var(--bg-node);
   backdrop-filter: blur(8px);
@@ -21,11 +32,17 @@
   color: var(--text-primary);
 }
 
-.node-container:hover, .node-container.selected {
+.node-container:hover,
+.node-container.selected {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px var(--accent-glow), 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 0 0 2px var(--accent-glow),
+    0 20px 25px -5px rgba(0, 0, 0, 0.4);
 }
 
+/* =========================================================
+   Node Header & Content
+   ========================================================= */
 .node-header {
   padding: 12px 16px;
   background: var(--bg-header);
@@ -57,20 +74,25 @@
   gap: 14px;
 }
 
+/* =========================================================
+   Form Fields
+   ========================================================= */
 .pro-field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .pro-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
-.pro-input, .pro-select, .pro-textarea {
+.pro-input,
+.pro-select,
+.pro-textarea {
   background: var(--bg-input);
   border: 1px solid var(--border-main);
   border-radius: 8px;
@@ -80,11 +102,16 @@
   outline: none;
 }
 
-.pro-input:focus, .pro-select:focus, .pro-textarea:focus {
+.pro-input:focus,
+.pro-select:focus,
+.pro-textarea:focus {
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
+/* =========================================================
+   React Flow Handles
+   ========================================================= */
 .pro-handle {
   width: 10px !important;
   height: 10px !important;
@@ -94,213 +121,71 @@
 }
 
 .pro-handle:hover {
+  background: var(--accent-primary) !important;
   border-color: var(--accent-primary) !important;
   transform: scale(1.4);
-  background: var(--accent-primary) !important;
 }
 
+/* =========================================================
+   React Flow Minimap
+   ========================================================= */
 .react-flow__minimap {
-  background-color: var(--bg-header) !important;
+  background: var(--bg-header) !important;
   border: 1px solid var(--border-main) !important;
   border-radius: 12px !important;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
-  margin: 20px !important; /* Distance from the bottom-right corner */
+  margin: 20px !important;
 }
 
-/* Styling the view window within the minimap */
 .react-flow__minimap-mask {
   fill: rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Styling node representations in the minimap */
 .react-flow__minimap-node {
   fill-opacity: 0.8 !important;
   stroke: none !important;
 }
 
-/* Toolbar specific styles for Carbon & Cobalt Theme */
-
-.studio-toolbar {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.toolbar-main-title {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 8px;
-}
-
-.toolbar-category-title {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--accent-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-  opacity: 0.8;
-}
-
-.toolbar-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-}
-
-/* Individual Library Item Style */
-.draggable-node-wrapper {
-  cursor: grab;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 8px;
-  background: var(--bg-header);
-  border: 1px solid var(--border-node);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.draggable-node-wrapper:hover {
-  background: var(--bg-node);
-  border-color: var(--accent-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transform: translateX(4px);
-}
-
-.draggable-node-icon {
-  font-size: 16px;
-  color: var(--text-dim);
-  width: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.draggable-node-wrapper:hover .draggable-node-icon {
-  color: var(--accent-primary);
-}
-
-.draggable-node-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-main);
-}
-
-/* frontend/src/nodes/nodes.css additions */
-
-.studio-sidebar-content {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.sidebar-title {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
-}
-
-.sidebar-section-header {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--accent-primary);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  opacity: 0.7;
-}
-
-/* 2-Column Grid for Professional Appearance */
-.component-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-/* Professional Component Card Style */
-.draggable-card {
-  cursor: grab;
-  background: var(--bg-header);
-  border: 1px solid var(--border-node);
-  border-radius: 10px;
-  padding: 16px 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
-}
-
-.draggable-card:hover {
-  background: var(--bg-node);
-  border-color: var(--accent-primary);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  transform: translateY(-2px);
-}
-
-.draggable-card:active {
-  cursor: grabbing;
-}
-
-.card-icon-container {
-  font-size: 20px;
-  color: var(--text-dim);
-  transition: color 0.2s;
-}
-
-.draggable-card:hover .card-icon-container {
-  color: var(--accent-primary);
-}
-
-.card-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-main);
-  text-align: center;
-}
-
-/* frontend/src/nodes/nodes.css additions */
-
-/* 1. Sidebar Layout & Grid */
-.studio-sidebar-content {
+/* =========================================================
+   Sidebar / Palette Layout
+   ========================================================= */
+.studio-sidebar-content,
+.studio-palette {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.sidebar-title {
+.sidebar-title,
+.palette-title {
   font-size: 12px;
   font-weight: 800;
   color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  margin-bottom: 4px;
 }
 
-.sidebar-section-header {
+.sidebar-section-header,
+.palette-section-header {
   font-size: 10px;
   font-weight: 600;
   color: var(--accent-primary);
   text-transform: uppercase;
-  margin-bottom: 12px;
   opacity: 0.7;
 }
 
-.component-grid {
+.component-grid,
+.palette-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-/* 2. Draggable Component Cards */
-.draggable-card {
+/* =========================================================
+   Draggable Cards / Tiles
+   ========================================================= */
+.draggable-card,
+.draggable-studio-tile {
   cursor: grab;
   background: var(--bg-header);
   border: 1px solid var(--border-node);
@@ -311,40 +196,51 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.draggable-card:hover {
+.draggable-card:hover,
+.draggable-studio-tile:hover {
   background: var(--bg-node);
   border-color: var(--accent-primary);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
 }
 
-.card-icon-container {
+.draggable-card:active,
+.draggable-studio-tile:active {
+  cursor: grabbing;
+}
+
+.card-icon-container,
+.tile-icon {
   color: var(--text-dim);
   transition: color 0.2s, transform 0.2s;
 }
 
-.draggable-card:hover .card-icon-container {
+.draggable-card:hover .card-icon-container,
+.draggable-studio-tile:hover .tile-icon {
   color: var(--accent-primary);
   transform: scale(1.1);
 }
 
-.card-label {
+.card-label,
+.tile-label {
   font-size: 11px;
   font-weight: 500;
   color: var(--text-secondary);
   text-align: center;
 }
 
-/* 3. Modernizing ReactFlow Controls (Zoom/Pan Bar) */
+/* =========================================================
+   React Flow Controls (Zoom / Pan)
+   ========================================================= */
 .react-flow__controls {
   background: var(--bg-header) !important;
   border: 1px solid var(--border-node) !important;
   border-radius: 8px !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -357,7 +253,7 @@
   color: var(--text-main) !important;
   fill: var(--text-main) !important;
   padding: 8px !important;
-  transition: background 0.2s !important;
+  transition: background 0.2s, transform 0.1s;
 }
 
 .react-flow__controls-button:last-child {
@@ -369,7 +265,31 @@
   color: var(--accent-primary) !important;
 }
 
+.react-flow__controls-button:active {
+  transform: scale(0.96);
+}
+
 .react-flow__controls-button svg {
   width: 14px !important;
   height: 14px !important;
+}
+
+/* =========================================================
+   Sidebar Scrollbar
+   ========================================================= */
+aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background: var(--border-node);
+  border-radius: 10px;
+}
+
+aside::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
 }

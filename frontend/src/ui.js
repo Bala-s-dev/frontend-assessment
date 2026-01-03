@@ -115,8 +115,8 @@ export const PipelineUI = () => {
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'
             >
-                <Background color="#aaa" gap={gridSize} />
-                <Controls />
+            <Background color="var(--border-main)" gap={20} variant="dots" />
+            <Controls />
             <MiniMap
               nodeColor={(n) => {
                 // Dynamically color nodes in the minimap based on their typeColor
@@ -125,12 +125,12 @@ export const PipelineUI = () => {
                 if (n.type === 'customOutput') return '#ef4444';
                 return '#6366f1';
               }}
-              maskColor="rgba(15, 23, 42, 0.6)" // Matches your "Modern Studio" dark theme
               style={{
-                backgroundColor: '#1c2128', // Matches --bg-header
-                borderRadius: '8px',
-                border: '1px solid #374151', // Matches --border-main
+                backgroundColor: 'var(--bg-header)',
+                borderRadius: '12px',
+                border: '1px solid var(--border-main)',
               }}
+              maskColor="rgba(0, 0, 0, 0.5)"
               zoomable
               pannable
             />
