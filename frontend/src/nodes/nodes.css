@@ -117,3 +117,74 @@
   fill-opacity: 0.8 !important;
   stroke: none !important;
 }
+
+/* Toolbar specific styles for Carbon & Cobalt Theme */
+
+.studio-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.toolbar-main-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.toolbar-category-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.toolbar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Individual Library Item Style */
+.draggable-node-wrapper {
+  cursor: grab;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px;
+  background: var(--bg-header);
+  border: 1px solid var(--border-node);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.draggable-node-wrapper:hover {
+  background: var(--bg-node);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateX(4px);
+}
+
+.draggable-node-icon {
+  font-size: 16px;
+  color: var(--text-dim);
+  width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.draggable-node-wrapper:hover .draggable-node-icon {
+  color: var(--accent-primary);
+}
+
+.draggable-node-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}

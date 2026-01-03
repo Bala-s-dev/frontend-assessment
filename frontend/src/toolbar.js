@@ -3,20 +3,41 @@ import { DraggableNode } from './draggableNode';
 
 export const PipelineToolbar = () => {
   const categories = [
-    { name: 'Core', items: [['customInput', 'Input'], ['customOutput', 'Output'], ['text', 'Text Editor']] },
-    { name: 'Intelligence', items: [['llm', 'LLM Engine']] },
-    { name: 'Utilities', items: [['logic', 'Logic Branch'], ['timer', 'Timer'], ['note', 'Note'], ['file', 'File Upload'], ['color', 'Color Picker']] }
+    {
+      name: 'Core',
+      items: [
+        ['customInput', 'Input', '󰈔'],
+        ['customOutput', 'Output', '󰈔'],
+        ['text', 'Text Editor', '󰄷']
+      ]
+    },
+    {
+      name: 'Intelligence',
+      items: [
+        ['llm', 'LLM Engine', '󰚩']
+      ]
+    },
+    {
+      name: 'Utilities',
+      items: [
+        ['logic', 'Logic Branch', '󱓟'],
+        ['timer', 'Timer', '󱎫'],
+        ['note', 'Note', '󰠮'],
+        ['file', 'File Upload', '󰈔'],
+        ['color', 'Color Picker', '󰏘']
+      ]
+    }
   ];
 
   return (
-    <div>
-      <h2 style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '20px' }}>COMPONENTS</h2>
+    <div className="studio-toolbar">
+      <h2 className="toolbar-main-title">Components</h2>
       {categories.map(cat => (
-        <div key={cat.name} style={{ marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '12px' }}>{cat.name}</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {cat.items.map(([type, label]) => (
-              <DraggableNode key={type} type={type} label={label} />
+        <div key={cat.name} className="toolbar-category">
+          <h3 className="toolbar-category-title">{cat.name}</h3>
+          <div className="toolbar-grid">
+            {cat.items.map(([type, label, icon]) => (
+              <DraggableNode key={type} type={type} label={label} icon={icon} />
             ))}
           </div>
         </div>

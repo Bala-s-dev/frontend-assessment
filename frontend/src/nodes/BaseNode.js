@@ -1,8 +1,8 @@
 // frontend/src/nodes/BaseNode.js
-import { Handle } from 'reactflow';
+import { Handle, NodeResizer } from 'reactflow'; // Import NodeResizer
 import './nodes.css';
 
-export const BaseNode = ({ id, label, children, handles = [], typeColor = '#6366f1', icon }) => {
+export const BaseNode = ({ id, label, children, handles = [], typeColor = '#6366f1', icon, selected }) => {
   return (
     <div className="node-container">
       <div className="node-header">
@@ -10,10 +10,9 @@ export const BaseNode = ({ id, label, children, handles = [], typeColor = '#6366
           {icon && <span style={{ color: typeColor, display: 'flex' }}>{icon}</span>}
           <span className="node-label">{label}</span>
         </div>
-        {/* Visual Pulse Indicator */}
-        <div style={{
-          width: '6px', height: '6px', borderRadius: '50%',
-          background: typeColor, boxShadow: `0 0 10px ${typeColor}`
+        <div style={{ 
+          width: '6px', height: '6px', borderRadius: '50%', 
+          background: typeColor, boxShadow: `0 0 10px ${typeColor}` 
         }} />
       </div>
 
