@@ -1,25 +1,14 @@
-// frontend/src/nodes/outputNode.js
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 
-export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
+const Icon = <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M19.8 12H9" /></svg>;
 
+export const OutputNode = ({ id, data }) => {
+  const [name, setName] = useState(data?.outputName || id.replace('customOutput-', 'out_'));
   return (
-    <BaseNode id={id} label="Output" handles={[{ type: 'target', position: Position.Left, id: 'value' }]}>
-      <div className="node-field">
-        <label>Name:</label>
-        <input type="text" value={currName} onChange={(e) => setCurrName(e.target.value)} className="nodrag" />
-      </div>
-      <div className="node-field">
-        <label>Type:</label>
-        <select value={outputType} onChange={(e) => setOutputType(e.target.value)}>
-          <option value="Text">Text</option>
-          <option value="File">Image</option>
-        </select>
-      </div>
+    <BaseNode id={id} label="Output" typeColor="#ef4444" icon={Icon} handles={[{ type: 'target', position: Position.Left, id: 'value' }]}>
+      <div className="pro-field-group"><label className="pro-label">Label</label><input type="text" value={name} onChange={(e) => setName(e.target.value)} className="pro-input" /></div>
     </BaseNode>
   );
 };

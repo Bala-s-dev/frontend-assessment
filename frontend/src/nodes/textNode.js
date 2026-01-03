@@ -3,51 +3,34 @@ import { useState, useEffect, useRef } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 
-export const TextNode = ({ id, data }) => {
-  const [currText, setCurrText] = useState(data?.text || '{{input_data}}');
-  const [variables, setVariables] = useState([]);
-  const textAreaRef = useRef(null);
+const Icon = <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M4 7V4h16v3M9 20h6M12 4v16" /></svg>;
 
-  // Requirement: Detect {{ variable }} and create dynamic handles
+export const TextNode = ({ id, data }) => {
+  const [text, setText] = useState(data?.text || '{{input}}');
+  const [vars, setVars] = useState([]);
+  const areaRef = useRef(null);
+
   useEffect(() => {
     const regex = /{{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*}}/g;
-    const matches = [...currText.matchAll(regex)].map(match => match[1]);
-    setVariables([...new Set(matches)]);
-  }, [currText]);
+    const matches = [...text.matchAll(regex)].map(m => m[1]);
+    setVars([...new Set(matches)]);
+  }, [text]);
 
-  // Requirement: Adjust width/height as user enters more text
   useEffect(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = 'auto';
-      textAreaRef.current.style.height = `${Math.max(60, textAreaRef.current.scrollHeight)}px`;
+    if (areaRef.current) {
+      areaRef.current.style.height = 'auto';
+      areaRef.current.style.height = `${areaRef.current.scrollHeight}px`;
     }
-  }, [currText]);
+  }, [text]);
 
-  const dynamicHandles = [
-    { type: 'source', position: Position.Right, id: 'output' },
-    ...variables.map((v, i) => ({
-      type: 'target',
-      position: Position.Left,
-      id: v,
-      style: { top: `${(i + 1) * (100 / (variables.length + 1))}%` }
-    }))
+  const handles = [
+    { type: 'source', position: Position.Right, id: 'out' },
+    ...vars.map((v, i) => ({ type: 'target', position: Position.Left, id: v, style: { top: `${(i + 1) * (100 / (vars.length + 1))}%` } }))
   ];
 
   return (
-    <BaseNode id={id} label="Text Editor" handles={dynamicHandles}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <textarea
-          ref={textAreaRef}
-          value={currText}
-          onChange={(e) => setCurrText(e.target.value)}
-          className="nodrag"
-          style={{
-            background: 'transparent', border: 'none', color: 'var(--text-primary)',
-            fontSize: '13px', fontFamily: '"JetBrains Mono", monospace', resize: 'none', outline: 'none',
-            minWidth: '200px'
-          }}
-        />
-      </div>
+    <BaseNode id={id} label="Text Editor" typeColor="#60a5fa" icon={Icon} handles={handles}>
+      <div className="pro-field-group"><textarea ref={areaRef} value={text} onChange={(e) => setText(e.target.value)} className="pro-textarea nodrag" style={{ fontFamily: 'monospace', resize: 'none' }} /></div>
     </BaseNode>
   );
 };

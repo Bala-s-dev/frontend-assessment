@@ -2,18 +2,19 @@
 import { Handle } from 'reactflow';
 import './nodes.css';
 
-export const BaseNode = ({ id, label, children, handles = [], typeColor = '#58a6ff', icon }) => {
+export const BaseNode = ({ id, label, children, handles = [], typeColor = '#6366f1', icon }) => {
   return (
     <div className="node-container">
-      {/* Visual Identity Accent */}
-      <div className="node-accent-bar" style={{ background: typeColor }} />
-
       <div className="node-header">
         <div className="node-header-left">
-          {icon && <span className="node-type-icon" style={{ color: typeColor }}>{icon}</span>}
+          {icon && <span style={{ color: typeColor, display: 'flex' }}>{icon}</span>}
           <span className="node-label">{label}</span>
         </div>
-        <div className="node-status-indicator" style={{ background: typeColor, boxShadow: `0 0 8px ${typeColor}` }} />
+        {/* Visual Pulse Indicator */}
+        <div style={{
+          width: '6px', height: '6px', borderRadius: '50%',
+          background: typeColor, boxShadow: `0 0 10px ${typeColor}`
+        }} />
       </div>
 
       <div className="node-content">

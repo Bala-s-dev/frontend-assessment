@@ -1,17 +1,6 @@
-// frontend/src/nodes/NoteNode.js
 import { BaseNode } from './BaseNode';
+const Icon = <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /></svg>;
 
 export const NoteNode = ({ id }) => (
-    <BaseNode id={id} label="Developer Note" icon="󰠮" handles={[]}>
-        <textarea
-            placeholder="Add context or TODOs..."
-            className="pro-textarea nodrag"
-            style={{
-                minHeight: '100px',
-                background: '#1C2128',
-                border: '1px solid #444C56',
-                color: '#ADBAC7'
-            }}
-        />
-    </BaseNode>
+    <BaseNode id={id} label="Note" typeColor="#fbbf24" icon={Icon} handles={[]}><textarea placeholder="..." className="pro-textarea nodrag" style={{ minHeight: '80px', background: 'transparent' }} /></BaseNode>
 );
