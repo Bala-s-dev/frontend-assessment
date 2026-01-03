@@ -117,7 +117,23 @@ export const PipelineUI = () => {
             >
                 <Background color="#aaa" gap={gridSize} />
                 <Controls />
-                <MiniMap />
+            <MiniMap
+              nodeColor={(n) => {
+                // Dynamically color nodes in the minimap based on their typeColor
+                if (n.type === 'llm') return '#a78bfa';
+                if (n.type === 'customInput') return '#10b981';
+                if (n.type === 'customOutput') return '#ef4444';
+                return '#6366f1';
+              }}
+              maskColor="rgba(15, 23, 42, 0.6)" // Matches your "Modern Studio" dark theme
+              style={{
+                backgroundColor: '#1c2128', // Matches --bg-header
+                borderRadius: '8px',
+                border: '1px solid #374151', // Matches --border-main
+              }}
+              zoomable
+              pannable
+            />
             </ReactFlow>
         </div>
         </>

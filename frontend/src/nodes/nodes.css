@@ -98,3 +98,22 @@
   transform: scale(1.4);
   background: var(--accent-primary) !important;
 }
+
+.react-flow__minimap {
+  background-color: var(--bg-header) !important;
+  border: 1px solid var(--border-main) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+  margin: 20px !important; /* Distance from the bottom-right corner */
+}
+
+/* Styling the view window within the minimap */
+.react-flow__minimap-mask {
+  fill: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Styling node representations in the minimap */
+.react-flow__minimap-node {
+  fill-opacity: 0.8 !important;
+  stroke: none !important;
+}
