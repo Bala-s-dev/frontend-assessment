@@ -188,3 +188,188 @@
   font-weight: 500;
   color: var(--text-main);
 }
+
+/* frontend/src/nodes/nodes.css additions */
+
+.studio-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.sidebar-section-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+/* 2-Column Grid for Professional Appearance */
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Professional Component Card Style */
+.draggable-card {
+  cursor: grab;
+  background: var(--bg-header);
+  border: 1px solid var(--border-node);
+  border-radius: 10px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.draggable-card:hover {
+  background: var(--bg-node);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.draggable-card:active {
+  cursor: grabbing;
+}
+
+.card-icon-container {
+  font-size: 20px;
+  color: var(--text-dim);
+  transition: color 0.2s;
+}
+
+.draggable-card:hover .card-icon-container {
+  color: var(--accent-primary);
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-main);
+  text-align: center;
+}
+
+/* frontend/src/nodes/nodes.css additions */
+
+/* 1. Sidebar Layout & Grid */
+.studio-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.sidebar-section-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* 2. Draggable Component Cards */
+.draggable-card {
+  cursor: grab;
+  background: var(--bg-header);
+  border: 1px solid var(--border-node);
+  border-radius: 12px;
+  padding: 14px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.draggable-card:hover {
+  background: var(--bg-node);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.card-icon-container {
+  color: var(--text-dim);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.draggable-card:hover .card-icon-container {
+  color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* 3. Modernizing ReactFlow Controls (Zoom/Pan Bar) */
+.react-flow__controls {
+  background: var(--bg-header) !important;
+  border: 1px solid var(--border-node) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border-node) !important;
+  color: var(--text-main) !important;
+  fill: var(--text-main) !important;
+  padding: 8px !important;
+  transition: background 0.2s !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--border-node) !important;
+  color: var(--accent-primary) !important;
+}
+
+.react-flow__controls-button svg {
+  width: 14px !important;
+  height: 14px !important;
+}

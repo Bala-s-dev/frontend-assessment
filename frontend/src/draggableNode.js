@@ -1,5 +1,4 @@
 // frontend/src/draggableNode.js
-
 export const DraggableNode = ({ type, label, icon }) => {
   const onDragStart = (event, nodeType) => {
     const appData = { nodeType }
@@ -10,13 +9,13 @@ export const DraggableNode = ({ type, label, icon }) => {
 
   return (
     <div
-      className={`draggable-node-wrapper ${type}`}
+      className={`draggable-card ${type}`}
       onDragStart={(event) => onDragStart(event, type)}
       onDragEnd={(event) => (event.target.style.cursor = 'grab')}
       draggable
     >
-      <div className="draggable-node-icon">{icon}</div>
-      <span className="draggable-node-label">{label}</span>
+      <div className="card-icon-container">{icon}</div>
+      <span className="card-label">{label}</span>
     </div>
   );
 };
