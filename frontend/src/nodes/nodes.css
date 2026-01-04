@@ -1,51 +1,45 @@
-/* =========================================================
-   Root Theme Variables (Carbon & Cobalt)
-   ========================================================= */
+/* frontend/src/nodes/nodes.css */
+
+/* Variables inherited from index.css but refined for nodes */
 :root {
-  --bg-node: rgba(17, 24, 39, 0.95);
-  --bg-header: rgba(31, 41, 55, 0.8);
-  --bg-input: #030712;
-
-  --border-main: #374151;
-  --border-node: #374151;
-
-  --text-primary: #f9fafb;
-  --text-main: #e5e7eb;
-  --text-secondary: #9ca3af;
-  --text-dim: #6b7280;
-
-  --accent-primary: #6366f1;
-  --accent-glow: rgba(99, 102, 241, 0.2);
+  --bg-node: rgba(24, 24, 27, 0.9);
+  --bg-node-header: rgba(39, 39, 42, 0.5);
+  --bg-input: #09090b;
 }
 
-/* =========================================================
-   Node Container
-   ========================================================= */
+/* Node Container */
 .node-container {
   background: var(--bg-node);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-main);
   border-radius: 12px;
-  min-width: 240px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  min-width: 260px; /* Slightly wider for new field */
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
 }
 
-.node-container:hover,
+.node-container:hover {
+  border-color: var(--text-dim);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
 .node-container.selected {
   border-color: var(--accent-primary);
-  box-shadow:
-    0 0 0 2px var(--accent-glow),
-    0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    0 0 0 1px var(--accent-primary),
+    0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
-/* =========================================================
-   Node Header & Content
-   ========================================================= */
+/* Header */
 .node-header {
-  padding: 12px 16px;
-  background: var(--bg-header);
+  padding: 10px 14px;
+  background: var(--bg-node-header);
   border-bottom: 1px solid var(--border-main);
   border-radius: 12px 12px 0 0;
   display: flex;
@@ -56,27 +50,31 @@
 .node-header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .node-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
 }
 
+/* Content Area */
 .node-content {
-  padding: 16px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-/* =========================================================
-   Form Fields
-   ========================================================= */
+/* Form Fields */
 .pro-field-group {
   display: flex;
   flex-direction: column;
@@ -86,8 +84,9 @@
 .pro-label {
   font-size: 10px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-dim);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .pro-input,
@@ -95,11 +94,16 @@
 .pro-textarea {
   background: var(--bg-input);
   border: 1px solid var(--border-main);
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 6px;
+  padding: 8px 10px;
   color: var(--text-primary);
-  font-size: 13px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.4;
   outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .pro-input:focus,
@@ -109,88 +113,73 @@
   box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
-/* =========================================================
-   React Flow Handles
-   ========================================================= */
+/* New Description Field Styling */
+.description-section {
+  border-top: 1px dashed var(--border-main);
+  margin-top: 4px;
+  padding-top: 10px;
+}
+
+.description-input {
+  min-height: 45px;
+  resize: vertical;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.description-input:placeholder-shown {
+  font-style: italic;
+}
+
+/* Handles */
 .pro-handle {
-  width: 10px !important;
-  height: 10px !important;
-  background: var(--bg-input) !important;
-  border: 2px solid var(--border-main) !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: var(--bg-studio) !important;
+  border: 2px solid var(--text-dim) !important;
+  border-radius: 50%;
   transition: all 0.2s;
 }
 
 .pro-handle:hover {
   background: var(--accent-primary) !important;
   border-color: var(--accent-primary) !important;
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
-/* =========================================================
-   React Flow Minimap
-   ========================================================= */
-.react-flow__minimap {
-  background: var(--bg-header) !important;
-  border: 1px solid var(--border-main) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
-  margin: 20px !important;
+.react-flow__connection-path {
+  stroke: var(--text-dim);
+  stroke-width: 2px;
 }
 
-.react-flow__minimap-mask {
-  fill: rgba(0, 0, 0, 0.3) !important;
-}
-
-.react-flow__minimap-node {
-  fill-opacity: 0.8 !important;
-  stroke: none !important;
-}
-
-/* =========================================================
-   Sidebar / Palette Layout
-   ========================================================= */
-.studio-sidebar-content,
 .studio-palette {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.sidebar-title,
-.palette-title {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.sidebar-section-header,
 .palette-section-header {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--accent-primary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  opacity: 0.7;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
 }
 
-.component-grid,
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-/* =========================================================
-   Draggable Cards / Tiles
-   ========================================================= */
-.draggable-card,
+/* Draggable Tile */
 .draggable-studio-tile {
   cursor: grab;
-  background: var(--bg-header);
-  border: 1px solid var(--border-node);
-  border-radius: 12px;
-  padding: 14px 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,98 +187,91 @@
   gap: 8px;
   user-select: none;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 70px;
 }
 
-.draggable-card:hover,
 .draggable-studio-tile:hover {
-  background: var(--bg-node);
+  background: var(--bg-hover);
   border-color: var(--accent-primary);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.draggable-card:active,
 .draggable-studio-tile:active {
   cursor: grabbing;
+  transform: scale(0.98);
 }
 
-.card-icon-container,
 .tile-icon {
   color: var(--text-dim);
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.2s;
 }
 
-.draggable-card:hover .card-icon-container,
 .draggable-studio-tile:hover .tile-icon {
   color: var(--accent-primary);
-  transform: scale(1.1);
 }
 
-.card-label,
 .tile-label {
   font-size: 11px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-align: center;
 }
 
 /* =========================================================
-   React Flow Controls (Zoom / Pan)
+   Re-adding: Submit Button & Controls
    ========================================================= */
-.react-flow__controls {
-  background: var(--bg-header) !important;
-  border: 1px solid var(--border-node) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
-  overflow: hidden;
+.btn-submit {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px var(--accent-glow);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+/* React Flow Control Overrides */
+.react-flow__controls {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-main) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+  overflow: hidden;
+  margin: 15px !important;
 }
 
 .react-flow__controls-button {
   background: transparent !important;
   border: none !important;
-  border-bottom: 1px solid var(--border-node) !important;
-  color: var(--text-main) !important;
-  fill: var(--text-main) !important;
-  padding: 8px !important;
-  transition: background 0.2s, transform 0.1s;
+  border-bottom: 1px solid var(--border-main) !important;
+  color: var(--text-secondary) !important;
+  fill: var(--text-secondary) !important;
+  transition: all 0.2s;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
 }
 
 .react-flow__controls-button:last-child {
   border-bottom: none !important;
-}
-
-.react-flow__controls-button:hover {
-  background: var(--border-node) !important;
-  color: var(--accent-primary) !important;
-}
-
-.react-flow__controls-button:active {
-  transform: scale(0.96);
-}
-
-.react-flow__controls-button svg {
-  width: 14px !important;
-  height: 14px !important;
-}
-
-/* =========================================================
-   Sidebar Scrollbar
-   ========================================================= */
-aside::-webkit-scrollbar {
-  width: 6px;
-}
-
-aside::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-aside::-webkit-scrollbar-thumb {
-  background: var(--border-node);
-  border-radius: 10px;
-}
-
-aside::-webkit-scrollbar-thumb:hover {
-  background: var(--text-dim);
 }

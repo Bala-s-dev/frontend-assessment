@@ -10,6 +10,7 @@ export const SubmitButton = () => {
 
     const handleSubmit = async () => {
         try {
+            // Using localhost:8000 based on standard setup, ensure backend is running
             const response = await fetch('http://localhost:8000/pipelines/parse', {
                 method: 'POST',
                 headers: {
@@ -22,7 +23,7 @@ export const SubmitButton = () => {
 
             const result = await response.json();
 
-            // Part 4: Production-ready Alert
+            // Pretty alert for the results
             alert(
                 `🚀 Pipeline Analysis Complete\n` +
                 `---------------------------------\n` +
@@ -32,28 +33,15 @@ export const SubmitButton = () => {
             );
         } catch (error) {
             console.error('Error submitting pipeline:', error);
-            alert('Failed to connect to the analysis server.');
+            alert('Failed to connect to the analysis server. Please check if the backend is running.');
         }
     };
 
     return (
-        <button
-            onClick={handleSubmit}
-            className="pro-submit-btn"
-            style={{
-                background: 'linear-gradient(135deg, #58A6FF, #2188FF)',
-                color: 'white',
-                border: 'none',
-                padding: '8px 18px',
-                borderRadius: '6px',
-                fontWeight: 600,
-                fontSize: '13px',
-                cursor: 'pointer',
-                transition: 'transform 0.1s ease'
-            }}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.96)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
+        <button className="btn-submit" onClick={handleSubmit}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12l5 5l10 -10" />
+            </svg>
             Deploy Pipeline
         </button>
     );
