@@ -1,20 +1,26 @@
 /* frontend/src/nodes/nodes.css */
 
-/* Variables inherited from index.css but refined for nodes */
+/* =========================================================
+   Theme Variables
+   ========================================================= */
 :root {
-  --bg-node: rgba(24, 24, 27, 0.9);
-  --bg-node-header: rgba(39, 39, 42, 0.5);
-  --bg-input: #09090b;
+  --bg-node: rgba(24, 24, 27, 0.9);         /* Zinc-900 with opacity */
+  --bg-node-header: rgba(39, 39, 42, 0.5);  /* Zinc-800 with opacity */
+  --bg-input: #09090b;                      /* Zinc-950 */
+  --border-node: #27272a;                   /* Zinc-800 */
+  --text-dim: #71717a;                      /* Zinc-500 */
 }
 
-/* Node Container */
+/* =========================================================
+   Node Container (Glassmorphism)
+   ========================================================= */
 .node-container {
   background: var(--bg-node);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-main);
+  border: 1px solid var(--border-node);
   border-radius: 12px;
-  min-width: 260px; /* Slightly wider for new field */
+  min-width: 260px;
   box-shadow: 
     0 4px 6px -1px rgba(0, 0, 0, 0.1), 
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -36,11 +42,13 @@
     0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
-/* Header */
+/* =========================================================
+   Node Header
+   ========================================================= */
 .node-header {
   padding: 10px 14px;
   background: var(--bg-node-header);
-  border-bottom: 1px solid var(--border-main);
+  border-bottom: 1px solid var(--border-node);
   border-radius: 12px 12px 0 0;
   display: flex;
   align-items: center;
@@ -66,7 +74,9 @@
   letter-spacing: 0.02em;
 }
 
-/* Content Area */
+/* =========================================================
+   Node Content & Forms
+   ========================================================= */
 .node-content {
   padding: 14px;
   display: flex;
@@ -74,7 +84,6 @@
   gap: 12px;
 }
 
-/* Form Fields */
 .pro-field-group {
   display: flex;
   flex-direction: column;
@@ -93,7 +102,7 @@
 .pro-select,
 .pro-textarea {
   background: var(--bg-input);
-  border: 1px solid var(--border-main);
+  border: 1px solid var(--border-node);
   border-radius: 6px;
   padding: 8px 10px;
   color: var(--text-primary);
@@ -113,9 +122,9 @@
   box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
-/* New Description Field Styling */
+/* Description Field Specifics */
 .description-section {
-  border-top: 1px dashed var(--border-main);
+  border-top: 1px dashed var(--border-node);
   margin-top: 4px;
   padding-top: 10px;
 }
@@ -131,7 +140,9 @@
   font-style: italic;
 }
 
-/* Handles */
+/* =========================================================
+   Handles & Connections
+   ========================================================= */
 .pro-handle {
   width: 8px !important;
   height: 8px !important;
@@ -152,10 +163,14 @@
   stroke-width: 2px;
 }
 
+/* =========================================================
+   Sidebar / Palette Layout
+   ========================================================= */
 .studio-palette {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
 }
 
 .palette-section-header {
@@ -205,6 +220,11 @@
 .tile-icon {
   color: var(--text-dim);
   transition: color 0.2s;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .draggable-studio-tile:hover .tile-icon {
@@ -219,7 +239,7 @@
 }
 
 /* =========================================================
-   Re-adding: Submit Button & Controls
+   Submit Button
    ========================================================= */
 .btn-submit {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
@@ -247,10 +267,12 @@
   transform: translateY(0);
 }
 
-/* React Flow Control Overrides */
+/* =========================================================
+   React Flow Controls Override
+   ========================================================= */
 .react-flow__controls {
   background: var(--bg-card) !important;
-  border: 1px solid var(--border-main) !important;
+  border: 1px solid var(--border-node) !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
   overflow: hidden;
@@ -260,7 +282,7 @@
 .react-flow__controls-button {
   background: transparent !important;
   border: none !important;
-  border-bottom: 1px solid var(--border-main) !important;
+  border-bottom: 1px solid var(--border-node) !important;
   color: var(--text-secondary) !important;
   fill: var(--text-secondary) !important;
   transition: all 0.2s;
@@ -274,4 +296,61 @@
 
 .react-flow__controls-button:last-child {
   border-bottom: none !important;
+}
+
+/* =========================================================
+   Mobile / Tablet Responsive Overrides
+   ========================================================= */
+@media (max-width: 768px) {
+  /* Sidebar Logic: Convert to narrow icon-only dock */
+  .studio-palette {
+    gap: 16px;
+  }
+
+  .palette-section-header,
+  .palette-title {
+    display: none; /* Hide text headers */
+  }
+
+  .palette-grid {
+    display: flex; /* Stack vertically */
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .draggable-studio-tile {
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  
+  .draggable-studio-tile:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-light);
+  }
+
+  .tile-label {
+    display: none; /* Hide text labels */
+  }
+
+  .tile-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-secondary);
+  }
+  
+  .tile-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Submit Button: Compact version */
+  .btn-submit span {
+    display: none;
+  }
+  .btn-submit {
+    padding: 8px; /* Square button */
+  }
 }

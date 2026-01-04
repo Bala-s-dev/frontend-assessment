@@ -5,7 +5,7 @@
   /* Core Brand & Backgrounds */
   --bg-studio: #09090b;       /* Zinc-950 */
   --bg-card: #18181b;         /* Zinc-900 */
-  --bg-panel: #121215;        /* Zinc-925 (custom) */
+  --bg-panel: #121215;        /* Zinc-925 */
   --bg-hover: #27272a;        /* Zinc-800 */
   
   /* Borders & Dividers */
@@ -25,6 +25,7 @@
   /* Layout Dimensions */
   --header-height: 64px;
   --sidebar-width: 280px;
+  --sidebar-mobile-width: 64px; /* Narrow width for icons only */
 }
 
 body {
@@ -33,7 +34,7 @@ body {
   color: var(--text-primary);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden; /* App container handles scroll */
+  overflow: hidden;
 }
 
 /* =========================================================
@@ -66,8 +67,9 @@ body {
   background: var(--bg-panel);
   border-right: 1px solid var(--border-main);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 24px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.3s ease;
   z-index: 40;
 }
 
@@ -84,38 +86,32 @@ body {
    ========================================================= */
 @media (max-width: 768px) {
   .app-layout {
-    grid-template-columns: 1fr; /* Stack layout */
+    /* Change grid to use narrow sidebar column */
+    grid-template-columns: var(--sidebar-mobile-width) 1fr;
   }
 
   .app-sidebar {
-    position: absolute;
-    top: var(--header-height);
-    left: 0;
-    bottom: 0;
-    width: var(--sidebar-width);
-    transform: translateX(-100%); /* Hide by default */
-    box-shadow: 4px 0 24px rgba(0,0,0,0.5);
-  }
-
-  .app-sidebar.open {
-    transform: translateX(0);
-  }
-
-  /* Overlay when sidebar is open */
-  .sidebar-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(2px);
-    z-index: 30;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    /* Reset absolute positioning from previous version */
+    position: relative;
+    transform: none;
+    width: 100%; /* Fills the grid column */
+    padding: 16px 8px; /* Reduce padding to fit icons */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
-  .sidebar-overlay.visible {
-    opacity: 1;
-    pointer-events: auto;
+  .app-header {
+    padding: 0 16px;
+  }
+  
+  .brand-text {
+    font-size: 16px;
+  }
+  
+  /* Hide the text "Studio" on very small screens if needed */
+  .brand-text span {
+    display: none;
   }
 }
 
@@ -128,14 +124,6 @@ body {
   gap: 12px;
 }
 
-.brand-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent-primary), #818cf8);
-  box-shadow: 0 0 15px var(--accent-glow);
-}
-
 .brand-text {
   font-size: 18px;
   font-weight: 600;
@@ -146,24 +134,6 @@ body {
 .brand-text span {
   color: var(--text-dim);
   font-weight: 400;
-}
-
-.menu-toggle {
-  display: none; /* Hidden on desktop */
-  background: transparent;
-  border: 1px solid var(--border-main);
-  color: var(--text-secondary);
-  border-radius: 6px;
-  padding: 6px;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 /* =========================================================

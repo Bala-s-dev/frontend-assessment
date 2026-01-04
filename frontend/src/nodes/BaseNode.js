@@ -2,9 +2,8 @@
 import { Handle } from 'reactflow';
 import { useStore } from '../store';
 import { shallow } from 'zustand/shallow';
-import './nodes.css';
+import './nodes.css'; //
 
-// Selector to get specific node data and the update function
 const nodeSelector = (id) => (state) => ({
   description: state.nodes.find((n) => n.id === id)?.data?.description || '',
   updateNodeField: state.updateNodeField,

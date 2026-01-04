@@ -1,10 +1,10 @@
 // frontend/src/ui.js
-// ... (imports remain mostly same)
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
-import { useStore } from './store';
+import { useStore } from './store'; //
 import { shallow } from 'zustand/shallow';
-// ... (node imports)
+
+// Node Imports
 import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
@@ -19,6 +19,7 @@ import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
@@ -55,11 +56,11 @@ export const PipelineUI = () => {
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
-    // NEW: Added 'description' field to common data model
+    // Initialize with description field
     let nodeData = {
       id: nodeID,
       nodeType: `${type}`,
-      description: '' // Initialize empty description
+      description: ''
     };
     return nodeData;
   }
@@ -128,7 +129,7 @@ export const PipelineUI = () => {
           }}
           style={{
             backgroundColor: 'var(--bg-card)',
-            borderRadius: '12px',
+            borderRadius: '8px',
             border: '1px solid var(--border-main)',
           }}
           maskColor="rgba(0, 0, 0, 0.4)"
